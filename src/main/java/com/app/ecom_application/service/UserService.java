@@ -10,4 +10,6 @@ public interface UserService {
     List<User> createUser(User user);
 
     User getUser(Long id);
+
+    String updateUserInfo(User user, Long id);
 }

@@ -25,11 +25,18 @@ public class UserServiceImpl implements  UserService{
         user.setId(nextId++);
          users.add(user);
          return users;
-
     }
 
     @Override
     public User getUser(Long id) {
         return users.stream().filter(c-> c.getId().equals(id)).findFirst().orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found"));
+    }
+
+    @Override
+    public String updateUserInfo(User user, Long id) {
+        User existingUser = users.stream().filter(c-> c.getId().equals(id)).findFirst().orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        return "User with id:" + id + "has been updated";
     }
 }

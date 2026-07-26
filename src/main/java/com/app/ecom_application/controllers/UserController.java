@@ -25,10 +25,11 @@ public class UserController {
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
       return ResponseEntity.ok(userService.getUser(id)) ;
-//        if(user == null){
-//            return  ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<String> updateUserInfo(@RequestBody User user, @PathVariable Long Id){
+       return ResponseEntity.ok(userService.updateUserInfo(user, Id)) ;
     }
 
     @PostMapping("/users")
