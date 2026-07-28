@@ -27,19 +27,19 @@ public class UserController {
       return ResponseEntity.ok(userService.getUser(id)) ;
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity<String> updateUserInfo(@RequestBody User user, @PathVariable Long id){
-       try {
-           return ResponseEntity.ok(userService.updateUserInfo(user, id)) ;
-       }catch (ResponseStatusException e){
-           return new ResponseEntity<>(e.getReason(),e.getStatusCode());
-       }
-    }
-
     @PostMapping("/users")
     public ResponseEntity<List<User>> createUser(@RequestBody User user){
         List<User> users = userService.createUser(user);
         return ResponseEntity.ok(users);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<String> updateUserInfo(@RequestBody User user, @PathVariable Long id){
+        try {
+            return ResponseEntity.ok(userService.updateUserInfo(user, id)) ;
+        }catch (ResponseStatusException e){
+            return new ResponseEntity<>(e.getReason(),e.getStatusCode());
+        }
     }
 
 
