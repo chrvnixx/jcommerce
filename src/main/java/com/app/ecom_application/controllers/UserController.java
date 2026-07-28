@@ -28,9 +28,8 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<List<User>> createUser(@RequestBody User user){
-        List<User> users = userService.createUser(user);
-        return ResponseEntity.ok(users);
+    public ResponseEntity<String> createUser(@RequestBody User user){
+        return ResponseEntity.ok(userService.createUser(user));
     }
 
     @PutMapping("/users/{id}")
