@@ -37,6 +37,6 @@ public class UserServiceImpl implements  UserService{
         User existingUser = users.stream().filter(c-> c.getId().equals(id)).findFirst().orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
-        return "User with id:" + id + "has been updated";
+        return "User with id:" + id + " has been updated";
     }
 }

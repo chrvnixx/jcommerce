@@ -28,9 +28,9 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<String> updateUserInfo(@RequestBody User user, @PathVariable Long Id){
+    public ResponseEntity<String> updateUserInfo(@RequestBody User user, @PathVariable Long id){
        try {
-           return ResponseEntity.ok(userService.updateUserInfo(user, Id)) ;
+           return ResponseEntity.ok(userService.updateUserInfo(user, id)) ;
        }catch (ResponseStatusException e){
            return new ResponseEntity<>(e.getReason(),e.getStatusCode());
        }
