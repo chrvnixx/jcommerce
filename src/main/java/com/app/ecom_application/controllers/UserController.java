@@ -3,7 +3,6 @@ package com.app.ecom_application.controllers;
 import com.app.ecom_application.models.User;
 import com.app.ecom_application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;

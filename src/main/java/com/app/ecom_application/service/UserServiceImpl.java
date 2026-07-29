@@ -40,6 +40,7 @@ public class UserServiceImpl implements  UserService{
        User existingUser =  userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
        existingUser.setFirstName(user.getFirstName());
        existingUser.setLastName(user.getLastName());
+       userRepository.save(existingUser);
        return "User has been updated";
     }
 }
