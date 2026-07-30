@@ -5,16 +5,19 @@ import com.app.ecom_application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class UserController {
-
     @Autowired
     private UserService userService;
+
+    @PostMapping("/users")
+    public ResponseEntity<String> createUser(@RequestBody User newUser){
+       return ResponseEntity.ok(userService.createUser(newUser));
+    }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
@@ -23,22 +26,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
-      return ResponseEntity.ok(userService.getUser(id)) ;
+        return ResponseEntity.ok(userService.getUser(id));
     }
-
-    @PostMapping("/users")
-    public ResponseEntity<String> createUser(@RequestBody User user){
-        return ResponseEntity.ok(userService.createUser(user));
-    }
-
-    @PutMapping("/users/{id}")
-    public ResponseEntity<String> updateUserInfo(@RequestBody User user, @PathVariable Long id){
-        try {
-            return ResponseEntity.ok(userService.updateUserInfo(user, id)) ;
-        }catch (ResponseStatusException e){
-            return new ResponseEntity<>(e.getReason(),e.getStatusCode());
-        }
-    }
-
 
 }
