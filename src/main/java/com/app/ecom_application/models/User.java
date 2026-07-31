@@ -23,7 +23,7 @@ public class User {
     private UserRole role;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn( name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @CreationTimestamp
@@ -31,4 +31,5 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
 }

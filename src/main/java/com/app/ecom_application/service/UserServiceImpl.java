@@ -4,7 +4,6 @@ import com.app.ecom_application.models.User;
 import com.app.ecom_application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,10 +14,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Override
-    public String createUser(User newUser) {
-        userRepository.save(newUser);
+    public String createUser(User user) {
+        userRepository.save(user);
         return "User created!!!";
     }
 
@@ -29,6 +28,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Long id) {
-      return userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
+    @Override
+    public Object updateUserInfo(Long id, User user) {
+       User existingUser = userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+       existingUser.setFirstName(user.getFirstName());
+       existingUser.setLastName(user.getLastName());
+       userRepository.save(existingUser);
+       return null;
     }
 }

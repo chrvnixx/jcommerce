@@ -1,16 +1,17 @@
 package com.app.ecom_application.service;
 
 import com.app.ecom_application.models.User;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface UserService {
-    
-    String createUser(User newUser);
 
+
+    String createUser(User user);
 
     List<User> getAllUsers();
 
     User getUser(Long id);
+
+    Object updateUserInfo(Long id, User user);
 }
