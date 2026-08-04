@@ -1,5 +1,7 @@
 package com.app.ecom_application.controllers;
 
+import com.app.ecom_application.dto.UserRequest;
+import com.app.ecom_application.dto.UserResponse;
 import com.app.ecom_application.models.User;
 import com.app.ecom_application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,17 @@ public class UserController {
     private UserService userService;
 
 @PostMapping("/users")
-    public ResponseEntity<String> createUser(@RequestBody User user){
+    public ResponseEntity<String> createUser(@RequestBody UserRequest userRequest){
         return ResponseEntity.ok(userService.createUser(user));
 }
 
 @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserResponse>> getAllUsers(){
     return ResponseEntity.ok(userService.getAllUsers());
 }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id){
+    public ResponseEntity<UserResponse> getUser(@PathVariable Long id){
            return ResponseEntity.ok(userService.getUser(id));
     }
 
